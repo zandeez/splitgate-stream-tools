@@ -1,38 +1,34 @@
-# create-svelte
+# Splitgate Stream Tools
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+A set of tools for streaming Splitgate, written in SvelteKit.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+* OBS Overlay which displays rank separately for each playlist (data from tracker.gg)
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+## Usage - Source
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+  git clone https://github.com/zandeez/splitgate-stream-tools.git
+  cd splitgate-stream-tools
+  npm install
+  npm run build
+  VITE_TRACKER_PLAYER_ID=<tracker.gg player id> VITE_TRACKER_PLATFORM=<tracker.gg player platform> VITE_TRACKER_API_KEY=<tracker.gg API Key> npm run preview 
 
-> Note: the `@next` is temporary
+Then add a new Browser source in OBS with the address http://localhost:3000/
 
-## Developing
+### Updating
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+  git pull
+  npm installl
+  npm run build
+  
+### Running
 
-```bash
-npm run dev
+  VITE_TRACKER_PLAYER_ID=<tracker.gg player id> VITE_TRACKER_PLATFORM=<tracker.gg player platform> VITE_TRACKER_API_KEY=<tracker.gg API Key> npm run preview
+  
+## Usage - Docker
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+  git clone https://github.com/zandeez/splitgate-stream-tools.git
+  cd splitgate-stream-tools
+  docker build . -t splitgate-stream-tools
+  VITE_TRACKER_PLAYER_ID=<tracker.gg player id> VITE_TRACKER_PLATFORM=<tracker.gg player platform> VITE_TRACKER_API_KEY=<tracker.gg API Key> docker run -it -p 3000:3000 --rm  splitgate-stream-tools:latest
